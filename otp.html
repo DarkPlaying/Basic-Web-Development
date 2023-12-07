@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>OTP Verification</h1>
+    <form id="otp-form" action="verify.php" method="post">
+        <input class="input-field" type="email" name="email" placeholder="Enter your email" required>
+        <input class="input-field" type="text" name="otp" placeholder="Enter OTP" required>
+        <a href="verify.php">Verify OTP</a>
+    </form>
+    <div class="alt-action">
+        <a href="login.html">Back to Login</a>
+    </div>
+</body>
+</html>

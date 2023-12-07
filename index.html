@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Register</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+    <div class="container" id="login-section">
+        <h1>Login to Your Account</h1>
+        <form id="login-form" action="login.php" method="post">
+            
+            <input class="input-field" type="text" name="username" placeholder="Username" required>
+            <input class="input-field" type="password" name="password" placeholder="Password" required>
+            <button class="action-button" type="submit">Log In</button>
+        </form>
+        <div class="alt-action">
+            <a href="#registration-section" id="register-link">Don't have an account? Register here.</a>
+        </div>
+        <div class="alt-action">
+            <a href="#forgot-password-section" id="forgot-password-link">Forgot Password?</a>
+            <a href="signup.php">Verify By Otp</a>
+        </div>
+    </div>
+    <form action="register.php" method="post">
+    <div class="container" id="registration-section" style="display: none;">
+        <h1>Create an Account</h1>
+        <form id="registration-form" action="register.php" method="post">
+            <input class="input-field" type="text" name="fullname" placeholder="Full Name" required>
+            <input class="input-field" type="email" name="email" placeholder="Email Address" required>
+            <input class="input-field" type="password" name="password" placeholder="Password" required>
+            <button class="action-button" type="submit">Register</button>
+        </form>
+    </form>
+        <div class="alt-action">
+            <a href="login.html" id="login-link">Already have an account? Log in here.</a>
+        </div>
+    </div>
+
+    <div class="container" id="forgot-password-section" style="display: none;">
+        <h1>Forgot Password</h1>
+        <form id="forgot-password-form" action="forgot_password.php" method="post">
+            <input class="input-field" type="email" name="email" placeholder="Enter your email" required>
+            <button class="action-button" type="submit">Reset Password</button>
+        </form>
+        <div class="alt-action">
+            <a href="#login-section" id="back-to-login-link">Back to Login</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('login-form');
+            const registrationForm = document.getElementById('registration-form');
+            const forgotPasswordForm = document.getElementById('forgot-password-form');
+            const loginSection = document.getElementById('login-section');
+            const registrationSection = document.getElementById('registration-section');
+            const forgotPasswordSection = document.getElementById('forgot-password-section');
+
+            // Show or hide the registration section based on the "Register here" link
+            document.getElementById('register-link').addEventListener('click', function () {
+                loginSection.style.display = 'none';
+                registrationSection.style.display = 'block';
+                forgotPasswordSection.style.display = 'none';
+            });
+
+            // Show or hide the login section based on the "Log in here" link
+            document.getElementById('login-link').addEventListener('click', function () {
+                registrationSection.style.display = 'none';
+                loginSection.style.display = 'block';
+                forgotPasswordSection.style.display = 'none';
+            });
+
+            // Show the forgot password section
+            document.getElementById('forgot-password-link').addEventListener('click', function () {
+                loginSection.style.display = 'none';
+                registrationSection.style.display = 'none';
+                forgotPasswordSection.style.display = 'block';
+            });
+
+            loginForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the form from submitting
+                const username = document.querySelector('#login-form input[name="username"]').value;
+                const password = document.querySelector('#login-form input[name="password"]').value;
+                if (username === 'king' && password === 'king') {
+                    window.location.href = 'dashboard/index.html'; // Redirect to the dashboard
+                }else{
+                    window.location.href = 'https://aboutmyself.webflow.io';
+                }
+            });
+
+            registrationForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the form from submitting
+                // Simulate a successful registration
+                // In a real application, you should send the registration data to a server
+                // and handle the response to determine if registration was successful.
+                // For this example, we'll assume registration is successful after a short delay.
+                setTimeout(function () {
+                    alert('Registration successful. You can now log in.'); // Show the success message
+                    window.location.href = 'index.html'; // Redirect to the login page
+                }, 1000); // Delay for 1 second (simulating a server response)
+            });
+
+            forgotPasswordForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the form from submitting
+                const email = document.querySelector('#forgot-password-form input[name="email"]').value;
+                // Simulate a successful password reset
+                // In a real application, you should send a reset email to the user's email address
+                // and handle the response to determine if the email was sent successfully.
+                // For this example, we'll assume the email was sent after a short delay.
+                setTimeout(function () {
+                    alert('Password reset email sent successfully.'); // Show the success message
+                    loginSection.style.display = 'block'; // Show the login section
+                    forgotPasswordSection.style.display = 'none'; // Hide the forgot password section
+                }, 1000); // Delay for 1 second (simulating a server response)
+            });
+        });
+    </script>
+</body>
+</html>
